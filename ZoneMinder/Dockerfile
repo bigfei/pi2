@@ -22,10 +22,7 @@ RUN aclocal && autoheader && automake --force-missing --add-missing && autoconf
 RUN ./configure --with-mariadb --with-polkit --enable-onvif=yes --with-webdir=/var/www/zm --with-ffmpeg=/usr/local --with-extralibs="-L/usr/local/lib" --with-cgidir=/usr/lib/cgi-bin --with-webuser=www-data --with-webgroup=www-data --enable-mmap=yes --disable-debug --with-libarch=lib --with-mysql=/usr ZM_SSL_LIB=openssl ZM_DB_USER=zm ZM_DB_PASS=zm LIBS='-lx265 -lfdk-aac -lmp3lame -lvorbis -lvpx -lopus -ltheora -lswresample -lm -lz -ldl  -ltheoraenc -lvorbisenc -ltheoradec -ldl'
 
 # Build ZoneMinder
-RUN make
-
-# Install ZoneMinder
-RUN make install
+RUN make &&  make install && make clean
 
 ## Adding the start script
 #ADD utils/docker/start.sh /tmp/start.sh
