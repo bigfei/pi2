@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 #echo deb http://archive.ubuntu.com/ubuntu trusty universe multiverse >> /etc/apt/sources.list
 apt-get update
 apt-get dist-upgrade
