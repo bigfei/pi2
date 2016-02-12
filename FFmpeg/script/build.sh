@@ -74,10 +74,11 @@ cd /usr/local/src/aacgain
 # Build ffmpeg.
 
 cd /usr/local/src/FFmpeg
-./configure --extra-libs="-ldl" --enable-libfreetype --enable-gpl --enable-libass --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libx265 --enable-nonfree
+./configure --extra-libs="-ldl" --enable-libfreetype --enable-gpl --enable-libass --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree
 make -j 8
 make install
 
+strip -s /usr/local/bin/* /usr/local/lib/*.a
 
 # Remove all tmpfile 
 
