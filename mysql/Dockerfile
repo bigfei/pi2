@@ -8,10 +8,12 @@ RUN groupadd -r mysql && useradd -r -g mysql mysql
 ADD script/build.sh /
 RUN ["/bin/bash", "/build.sh"]
 
+
 VOLUME /var/lib/mysql
 
 COPY script/entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]
 
+COPY mysqld_utf8.cnf /etc/mysql/conf.d/
 EXPOSE 3306
 CMD ["mysqld"]

@@ -1,0 +1,1 @@
+docker run -d -e MYSQL_ROOT_PASSWORD=q1w2e3r4 -e MYSQL_DATABASE=zm -e MYSQL_USER=zm -e MYSQL_PASSWORD=zmpass --net=zm --name=zm-mysql -v /home/pi/var/mysql:/var/lib/mysql -p 3306:3306  bigfei/rpi-mysql

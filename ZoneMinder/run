@@ -1,0 +1,1 @@
+docker run -t --privileged=true --net=zm -v /etc/localtime:/etc/localtime:ro -p 8080:80

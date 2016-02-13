@@ -2,15 +2,17 @@
 
 FROM bigfei/rpi-ffmpeg:latest 
 MAINTAINER Felix Xu <xuchenfei@gmail.com> 
-EXPOSE 80
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
 
 # Adding the build script
+ADD zm.conf /etc/zm.conf
+
 ADD build.sh /
 RUN ["/bin/bash", "/build.sh"]
 
-# Configure the script
-ADD configure.sh /
-RUN ["/bin/bash", "/configure.sh"]
+ADD zoneminder.conf /etc/apache2/conf-available/zoneminder.conf
+ADD zm.sh /
+
+EXPOSE 80
