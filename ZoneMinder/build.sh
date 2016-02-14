@@ -21,15 +21,12 @@ make
 make install
 #ln -sf /usr/local/etc/zm.conf /etc/zm.conf
 
-./zmlinkcontent.sh -z /etc/zm.conf
+cd /ZoneMinder
+/ZoneMinder/zmlinkcontent.sh -z /etc/zm.conf
 
 chown -R www-data:www-data /usr/local/share/zoneminder
 adduser www-data video
 sed -i 's/\;date.timezone =/date.timezone = \"Asia\/Shanghai\"/' /etc/php5/apache2/php.ini
-update-locale
-
-mkdir -p /var/tmp/zm
-chown www-data:www-data /var/tmp/zm
 
 strip -s /usr/local/bin/zm?
 

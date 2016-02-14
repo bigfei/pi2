@@ -16,3 +16,5 @@ ADD zoneminder.conf /etc/apache2/conf-available/zoneminder.conf
 ADD zm.sh /
 
 EXPOSE 80
+
+CMD ["/zm.sh"]
