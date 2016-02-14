@@ -8,23 +8,31 @@ cd /
 mkdir /ZoneMinder && curl -SL https://github.com/ZoneMinder/ZoneMinder/releases/download/v1.29.0/ZoneMinder-${ZM_VER}.tar.gz | tar -zxvf - -C /ZoneMinder --strip-components=1
 
 cd /ZoneMinder
-aclocal && autoheader && automake --force-missing --add-missing && autoconf
-ranlib /usr/local/lib/*.a
-./configure --with-mariadb --with-polkit --enable-onvif=yes --with-webdir=/var/www/zm --with-ffmpeg=/usr/local --with-extralibs="-L/usr/local/lib" --with-cgidir=/usr/lib/cgi-bin --with-webuser=www-data --with-webgroup=www-data --enable-mmap=yes --disable-debug --with-libarch=lib --with-mysql=/usr ZM_SSL_LIB=openssl ZM_DB_USER=zm ZM_DB_PASS=zmpass ZM_DB_HOST=zm-mysql LIBS='-lfdk-aac -lmp3lame -lvorbis -lvpx -lopus -ltheora -lswresample -lm -lz -ldl  -ltheoraenc -lvorbisenc -ltheoradec -ldl'
-make -j4 
-make install 
-make clean
 
-cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DZM_DB_USER=zm -DZM_DB_PASS=zmpass -DZM_DB_HOST=zm-mysql .
-cd /ZoneMinder/web
-make
+patch /ZoneMinder/src/CMakeLists.txt <<'EOF'
+@@ -16,6 +16,12 @@
+ add_executable(zms zms.cpp)
+ add_executable(zmstreamer zmstreamer.cpp)
+
++FOREACH (LIB ${ZM_EXTRA_LIBS})
++    UNSET(FOUND_LIB CACHE)
++    FIND_LIBRARY(FOUND_LIB ${LIB})
++    list(APPEND ZM_BIN_LIBS ${FOUND_LIB})
++ENDFOREACH(LIB)
++
+ target_link_libraries(zmc zm ${ZM_EXTRA_LIBS} ${ZM_BIN_LIBS})
+ target_link_libraries(zma zm ${ZM_EXTRA_LIBS} ${ZM_BIN_LIBS})
+ target_link_libraries(zmu zm ${ZM_EXTRA_LIBS} ${ZM_BIN_LIBS})
+EOF
+
+cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DZM_DB_USER=zm -DZM_DB_PASS=zmpass -DZM_DB_HOST=zm-mysql -DZM_EXTRA_LIBS="fdk-aac;mp3lame;vorbis;vpx;opus;swresample;x264;vorbisenc;theoraenc;theoradec;ogg"  .
+make -j4
 make install
-#ln -sf /usr/local/etc/zm.conf /etc/zm.conf
 
 cd /ZoneMinder
 /ZoneMinder/zmlinkcontent.sh -z /etc/zm.conf
 
-chown -R www-data:www-data /usr/local/share/zoneminder
+chown -R www-data:www-data /usr/local/share/zoneminder /usr/local/libexec/zoneminder/cgi-bin
 adduser www-data video
 sed -i 's/\;date.timezone =/date.timezone = \"Asia\/Shanghai\"/' /etc/php5/apache2/php.ini
 

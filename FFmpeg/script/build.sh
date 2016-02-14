@@ -27,7 +27,7 @@ make install
 # Build libx264
 
 cd /usr/local/src/x264
-./configure --enable-static
+./configure --enable-shared --enable-static
 make -j 8
 make install
 
@@ -36,7 +36,7 @@ make install
 
 cd /usr/local/src/fdk-aac
 autoreconf -fiv
-./configure --disable-shared
+./configure
 make -j 8
 make install
 
@@ -51,7 +51,7 @@ make install
 
 cd /usr/local/src/opus
 ./autogen.sh
-./configure --disable-shared
+./configure 
 make -j 8
 make install
 
@@ -78,7 +78,7 @@ cd /usr/local/src/FFmpeg
 make -j 8
 make install
 
-strip -s /usr/local/bin/* /usr/local/lib/*.a
+strip -s /usr/local/bin/* 
 
 # Remove all tmpfile 
 

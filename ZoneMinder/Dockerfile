@@ -7,7 +7,6 @@ MAINTAINER Felix Xu <xuchenfei@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 # Adding the build script
-ADD zm.conf /etc/zm.conf
 
 ADD build.sh /
 RUN ["/bin/bash", "/build.sh"]
