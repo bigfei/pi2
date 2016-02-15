@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 mkdir -p /var/tmp/zm
 chown www-data:www-data /var/tmp/zm
 
