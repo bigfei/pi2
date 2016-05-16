@@ -1,0 +1,5 @@
+FROM jedisct1/phusion-baseimage-latest:16.04
+MAINTAINER Frank Denis
+
+Add build.sh /
+RUN /build.sh
