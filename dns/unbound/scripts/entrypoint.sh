@@ -9,9 +9,9 @@ echo "Updating root-anchors..."
 unbound-anchor -a /var/cache/unbound/root-anchors.txt
 chown unbound:unbound /var/cache/unbound/root-anchors.txt
 
-sed -i "s/192\\.168\\.88\\.254/$DNS1/; s/119\\.29\\.29\\.29/$DNS2/" /etc/periodic/daily/update_list.sh
+sed -i "s/192\\.168\\.88\\.254/$DNS1/; s/119\\.29\\.29\\.29/$DNS2/" /etc/periodic/daily/update_list
 
-/etc/periodic/daily/update_list.sh
+/etc/periodic/daily/update_list
 
 reserved=12582912
 availableMemory=$((1024 * $( (fgrep MemAvailable /proc/meminfo || fgrep MemTotal /proc/meminfo) | sed 's/[^0-9]//g' ) ))
