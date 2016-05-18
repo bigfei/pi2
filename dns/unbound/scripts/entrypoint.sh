@@ -47,4 +47,5 @@ sed \
 
 #Run unbound
 echo "Starting unbound"
+crond -l 2
 exec unbound -d
