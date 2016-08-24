@@ -1,0 +1,65 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:      vlcd
+# Required-Start:   $remote_fs $syslog
+# Required-Stop:   $remote_fs $syslog
+# Should-Start:      $all
+# Should-Stop:
+# Default-Start:   2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description:   VLC daemon
+# Description:      VLC daemon with HTTP interface.
+### END INIT INFO
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON_BIN=/usr/bin/vlc
+NAME=vlcd
+DESC="VLC daemon"
+PIDFILE=/var/run/vlcd.pid
+LOGFILE=/var/log/vlcd.log
+
+[ -x "$DAEMON_BIN" ] || exit 0
+
+DAEMON_OPTS="-I dummy -vvv v4l2:///dev/video0:chroma=h264:width=1920:height=1080 :input-slave=\"alsa://hw:1,0\" --sout '#duplicate{dst=\"transcode{acodec=a52,ab=32}:standard{access=http,mux=ts,dst=:8090}\", dst=\"transcode{acodec=a52,channels=1,ab=32}:standard{access=http,mux=asf,dst=:8091}\", select=\"novideo\",dst=\"standard{access=http,mux=ts,dst=:8092,name=stream,mime=video/ts}\", select=\"noaudio\"'"
+USER="pirate"
+
+. /lib/lsb/init-functions
+
+case "$1" in
+  start)
+   export DISPLAY=:0.0
+   log_daemon_msg "Starting $DESC" "$NAME"
+   #start-stop-daemon --start --background --oknodo --no-close --chuid $USER --pidfile "$PIDFILE" --make-pidfile \
+   #    --exec /bin/bash -- -l -c "$DAEMON_BIN $DAEMON_OPTS > /tmp/vlcd.log 2>&1"
+   #start-stop-daemon --start --background --oknodo --no-close --chuid $USER --exec "$DAEMON_BIN" \
+   #   --pidfile "$PIDFILE" --make-pidfile -- "$DAEMON_OPTS" > /tmp/vlcd.log 2>&1
+   start-stop-daemon --start --background --oknodo --no-close --chuid $USER --pidfile "$PIDFILE" --make-pidfile \
+      --startas /bin/bash -- -c "exec $DAEMON_BIN $DAEMON_OPTS > /tmp/vlcd.log 2>&1"
+   echo "AA" 
+   log_end_msg "$?"
+   ;;
+  stop)
+   log_daemon_msg "Stopping $DESC" "$NAME"
+   start-stop-daemon --stop --oknodo --quiet --exec "$DAEMON_BIN" \
+      --pidfile "$PIDFILE"
+   rm -f "$PIDFILE" 
+   log_end_msg "$?"
+   ;;
+  restart)
+     $0 stop
+   sleep 8
+   $0 start
+   ;;
+  status)
+   status_of_proc "$DAEMON_BIN" "$NAME" -p "$PIDFILE"
+   exit $?
+   ;;
+  *)
+   N=/etc/init.d/$NAME
+   echo "Usage: $N {start|stop|restart|status}" >&2
+   exit 1
+   ;;
+esac
+
+exit 0
