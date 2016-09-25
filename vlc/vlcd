@@ -21,7 +21,7 @@ LOGFILE=/var/log/vlcd.log
 
 [ -x "$DAEMON_BIN" ] || exit 0
 
-DAEMON_OPTS="-I dummy -vvv v4l2:///dev/video0:chroma=h264:width=1920:height=1080 :input-slave=\"alsa://hw:1,0\" --sout '#duplicate{dst=\"transcode{acodec=a52,ab=32}:rtp{sdp=rtsp://:8554/live}\", dst=\"transcode{acodec=a52,channels=1,ab=32}:rtp{sdp=rtsp://:8554/live_audio}\", select=\"novideo\",dst=\"rtp{sdp=rtsp://:8554/live_video}\", select=\"noaudio\"'"
+DAEMON_OPTS="-I dummy -vvv v4l2:///dev/video0:chroma=h264:width=1920:height=1080 :input-slave=\"alsa://hw:1,0\" --sout '#duplicate{dst=\"transcode{acodec=a52,ab=32}:rtp{sdp=rtsp://:8554/live}\", dst=\"transcode{acodec=a52,channels=1,ab=32}:rtp{sdp=rtsp://:8554/live_audio}\", select=\"novideo\",dst=\"rtp{sdp=rtsp://:8554/live_video}\", select=\"noaudio\", dst=\"transcode{acodec=a52,ab=32}:standard{access=http,mux=ts,dst=:8090}\", dst=\"transcode{acodec=a52,channels=1,ab=32}:standard{access=http,mux=asf,dst=:8091}\", select=\"novideo\",dst=\"standard{access=http,mux=ts,dst=:8092,name=stream,mime=video/ts}\", select=\"noaudio\"'"
 USER="pirate"
 
 . /lib/lsb/init-functions
