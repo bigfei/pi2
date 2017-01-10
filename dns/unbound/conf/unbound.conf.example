@@ -159,7 +159,7 @@ server:
 
     # upstream connections use TCP only (and no UDP), "yes" or "no"
     # useful for tunneling scenarios, default no.
-    # tcp-upstream: no
+    tcp-upstream: yes
 
     # Maximum segment size (MSS) of TCP socket on which the server
     # responds to queries. Default is 0, system default MSS.
@@ -676,4 +676,5 @@ remote-control:
 forward-zone:
     name: "."
     forward-addr: %FORWARD_ADDR%@%FORWARD_PORT%
-    forward-first: yes
+    forward-addr: 208.67.220.220@5353
+    forward-first: no

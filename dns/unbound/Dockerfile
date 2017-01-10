@@ -1,4 +1,4 @@
-FROM bigfei/alpine-arm:edge
+FROM alpine:edge
 
 RUN apk add --no-cache --update unbound curl tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" /etc/timezone && apk del tzdata && rm -rf /var/cache/apk/*
@@ -6,7 +6,7 @@ RUN apk add --no-cache --update unbound curl tzdata && cp /usr/share/zoneinfo/As
 RUN mkdir -p /var/cache/unbound && chown unbound:unbound /var/cache/unbound /var/log
 COPY conf/* /etc/unbound/
 
-COPY scripts/update_list /etc/periodic/daily/
+COPY scripts/update_list /etc/periodic/daily/update_list
 RUN chmod +x /etc/periodic/daily/update_list
 
 COPY scripts/entrypoint.sh /
