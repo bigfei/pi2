@@ -3,26 +3,27 @@ services:
   proxy:
     build: dnscrypt/
     image: bigfei/rpi-dnscrypt-proxy
+    container_name: dns_proxy_telecom
     dns:
-      - 192.168.88.254
-      - 192.168.88.109
-      - 192.168.88.1
-      - 114.114.114.114
+      - 208.67.222.222
+      - 208.67.220.220
     environment:
-      - LISTEN_ADDR 0.0.0.0:5353
-      - RESOLVER_ADDR 208.67.220.220:443
-      - PROVIDER_NAME 2.dnscrypt-cert.opendns.com
-      - PROVIDER_KEY B735:1140:206F:225D:3E2B:D822:D7FD:691E:A1C3:3CC8:D666:8D0C:BE04:BFAB:CA43:FB79
+      - LISTEN_ADDR=0.0.0.0:5353
+      - RESOLVER_ADDR=208.67.220.220:443
+      - PROVIDER_NAME=2.dnscrypt-cert.opendns.com
+      - PROVIDER_KEY=B735:1140:206F:225D:3E2B:D822:D7FD:691E:A1C3:3CC8:D666:8D0C:BE04:BFAB:CA43:FB79
     restart: always
 
   unbound:
     build: unbound/
     image: bigfei/rpi-unbound
+    container_name: dns_unbound_telecom
+    depends_on:
+      - proxy
     dns:
+      #- 208.67.222.222
+      #- 208.67.220.220
       - 192.168.88.254
-      - 192.168.88.109
-      - 192.168.88.1
-      - 114.114.114.114
     ports:
       - "53:53/udp"
       - "53:53/tcp"
@@ -33,6 +34,6 @@ services:
     environment:
       - FORWARD_ADDR=proxy
       - FORWARD_PORT=5353
-      - DNS1=192.168.88.1
+      - DNS1=192.168.88.254
       - DNS2=119.29.29.29
     restart: always
