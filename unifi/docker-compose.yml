@@ -1,0 +1,13 @@
+version: '2'
+services:
+  unifi:
+    build: .
+    image: bigfei/rpi-unifi
+    container_name: unifi
+    dns:
+      - 208.67.222.222
+      - 208.67.220.220
+    environment:
+      - LISTEN_ADDR=0.0.0.0:5353
+      - RESOLVER_ADDR=208.67.220.220:443
+    restart: always
