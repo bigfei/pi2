@@ -14,26 +14,32 @@ RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 
-# RUN apt-get update && apt-get install -y --no-install-recommends wget \
-#     oracle-java8-installer=${JAVA_INSTALLER_VERSION} \
-#     oracle-java8-set-default && \
-#     mkdir -p /tmp/build && \
-#     cd /tmp/build && \
-#     wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \
-#     dpkg --install unifi_sysvinit_all.deb ; \
-#     apt-get install -f && \
-#     apt-get -y autoremove wget && \
-#     apt-get -q clean && \
-#     rm -rf /tmp/build /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/* /var/tmp/*
+# Install java before unifi so a controller update doesn't force
+# a rebuild/redownload of java
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    oracle-java8-installer=${JAVA_INSTALLER_VERSION} \
+    oracle-java8-set-default \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /var/cache/oracle-jdk8-installer
 
-#RUN ln -s /var/lib/unifi /usr/lib/unifi/data
+# Install any version from deb download
+# Use dpkg to mark the package for install (expect it to fail to complete the installation)
+# Use apt-get install -f to complete the installation with dependencies
+ENV UNIFI_VERSION 5.3.11-ac65a94337
+RUN apt-get update && apt-get install -y --no-install-recommends wget && \
+      mkdir -p /tmp/build && \
+      cd /tmp/build && \
+      wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \
+      dpkg --install unifi_sysvinit_all.deb ; \
+      apt-get install -f && \
+      rm -rf /var/lib/apt/lists/* && \
+      rm -rf /tmp/build
+
+RUN ln -s /var/lib/unifi /usr/lib/unifi/data
 EXPOSE 8080/tcp 8081/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp 10001/udp
+VOLUME ["/usr/lib/unifi/data", "/usr/lib/unifi/logs"]
 
-# Set internal storage volume
-#VOLUME ["/usr/lib/unifi/data", "/usr/lib/unifi/logs"]
+WORKDIR /var/lib/unifi
 
-# Set working directory for program
-#WORKDIR /usr/lib/unifi
-
-#ENTRYPOINT ["/usr/bin/java", "-Xmx1024M", "-jar", "/usr/lib/unifi/lib/ace.jar"]
-#CMD ["start"]
+ENTRYPOINT ["/usr/bin/java", "-Xmx1024M", "-jar", "/usr/lib/unifi/lib/ace.jar"]
+CMD ["start"]
