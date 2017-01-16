@@ -4,14 +4,7 @@ services:
     build: .
     image: bigfei/rpi-unifi
     container_name: unifi
-    ports:
-      - "3478:3478/udp"
-      - "6789:6789"
-      - "8080:8080"
-      - "8443:8443"
-      - "8880:8880"
-      - "8843:8843"
-      - "10001:10001/udp"
+    network_mode: "host"
     volumes:
       - "~/docker/unifi/data:/usr/lib/unifi/data"
     environment:
