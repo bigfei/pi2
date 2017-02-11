@@ -4,4 +4,6 @@ services:
     build: .
     image: bigfei/rpi-vlmcsd
     container_name: kms
+    ports:
+      - "1688:1688/tcp"
     restart: always
