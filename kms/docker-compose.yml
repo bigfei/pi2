@@ -1,0 +1,7 @@
+version: '2'
+services:
+  kms:
+    build: .
+    image: bigfei/rpi-vlmcsd
+    container_name: kms
+    restart: always
