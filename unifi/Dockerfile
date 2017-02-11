@@ -1,21 +1,16 @@
 FROM resin/rpi-raspbian:latest
 MAINTAINER Felix Xu <xuchenfei@gmail.com>
-
-ENV JAVA_INSTALLER_VERSION 8u111+8u111arm-1~webupd8~0
-ENV UNIFI_VERSION 5.3.11-ac65a94337
-
 RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
     > /etc/apt/sources.list.d/20ubiquiti.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
-    echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
+    echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu wily main" \
     > /etc/apt/sources.list.d/webupd8team-java.list && \
-    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
-    >> /etc/apt/sources.list.d/webupd8team-java.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 
 # Install java before unifi so a controller update doesn't force
 # a rebuild/redownload of java
+ENV JAVA_INSTALLER_VERSION 8u111+8u111arm-1~webupd8~0
 RUN apt-get update && apt-get install -y --no-install-recommends \
     oracle-java8-installer=${JAVA_INSTALLER_VERSION} \
     oracle-java8-set-default \
@@ -25,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 5.3.11-ac65a94337
+ENV UNIFI_VERSION 5.4.11-6cbeae59e7
 RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
