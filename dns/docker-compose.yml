@@ -42,10 +42,14 @@ services:
     build: isc-dhcp/
     image: bigfei/rpi-isc-dhcp
     container_name: dns_isc_dhcp
+    links:
+      - unbound
     volumes:
       - "~/docker/isc-dhcp:/var/lib/dhcp"
     cap_add:
       - NET_ADMIN
-    network_mode: "host"
+    ports:
+      - "67:67/udp"
+      - "674:674/tcp"
     restart: always
 
