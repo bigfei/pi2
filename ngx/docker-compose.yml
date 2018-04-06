@@ -1,6 +1,7 @@
 version: '2'
 services:
   nginx:
+    build: .
     image: bigfei/rpi-ngx
     ports:
       - "8000:80"

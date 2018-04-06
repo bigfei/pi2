@@ -37,3 +37,15 @@ services:
       - DNS1=192.168.88.254
       - DNS2=119.29.29.29
     restart: always
+ 
+  isc-dhcp:
+    build: isc-dhcp/
+    image: bigfei/rpi-isc-dhcp
+    container_name: dns_isc_dhcp
+    volumes:
+      - "~/docker/isc-dhcp:/var/lib/dhcp"
+    cap_add:
+      - NET_ADMIN
+    network_mode: "host"
+    restart: always
+
