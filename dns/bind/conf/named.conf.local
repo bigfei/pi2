@@ -1,0 +1,25 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "bigfei.lan" {
+    type master;
+    file "/etc/bind/zones/bigfei.lan.db"; # Zone file path
+    allow-update { key rndc-key; };               # allow for dynamic updates
+};
+
+zone "88.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/192.168.88.rev";       # 192.168.88.0/16 subnet
+    allow-update { key rndc-key; };              # allow for dynamic updates
+};
+
+zone "example.local" {
+       type master;
+       file "/etc/bind/zones/example.local";
+       allow-update { key rndc-key; };
+};

@@ -1,0 +1,15 @@
+; DO NOT EDIT MANUALLY - use the "nsupdate" utility to prevent data loss
+;
+$ORIGIN example.local.
+$TTL 86400 ; 1 day
+@  IN SOA ns1.example.local. hostmaster.example.local. (
+    2009074711 ; serial
+    7200       ; refresh (2 hours)
+    300        ; retry (5 minutes)
+    604800     ; expire (1 week)
+    60         ; minimum (1 minute)
+    )
+  IN NS ns1.example.local.
+  IN NS ns2.example.local.
+ns1  IN A 192.168.123.1
+ns2  IN A 192.168.123.2

@@ -1,0 +1,18 @@
+$ORIGIN .
+$TTL 907200 ; 1 week 3 days 12 hours
+bigfei.local IN SOA pi2.bigfei.local. admin.bigfei.local. (
+                   201804011; serial
+                   10800 ; refresh (3 hours)
+                   3600 ; retry (1 hour)
+                   604800 ; expire (1 week)
+                   38400 ; minimum (10 hours 40 minutes)
+                   )
+                   NS pi2.bigfei.local.
+                   A 192.168.88.168 
+$ORIGIN bigfei.local.
+pd-gw              A 192.168.88.254
+px-gw              A 192.168.88.1
+ubnt               A 192.168.88.253
+esxi               A 192.168.88.166
+sip                A 192.168.88.165
+pi2                A 192.168.88.168

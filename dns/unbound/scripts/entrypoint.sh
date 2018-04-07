@@ -36,11 +36,14 @@ FORWARD_PORT=${2:-$FORWARD_PORT}
 echo "Env FORWARD_ADDR as ${FORWARD_ADDR} and FORWARD_PORT as ${FORWARD_PORT}"
 FORWARD_ADDR=`nslookup $FORWARD_ADDR 2>&1 |  awk  'NR==4 { print $3 } '`
 echo "Setting FORWARD_ADDR as ${FORWARD_ADDR} and FORWARD_PORT as ${FORWARD_PORT}"
+BIND=`nslookup $BIND 2>&1 |  awk  'NR==4 { print $3 } '`
+echo "Setting BIND as ${BIND}"
 
 sed \
     -e "s/@MSG_CACHE_SIZE@/${msg_cache_size}/" \
     -e "s/@RR_CACHE_SIZE@/${rr_cache_size}/" \
     -e "s/@THREADS@/${threads}/" \
+    -e "s/%BIND%/${BIND}/" \
     -e "s/%FORWARD_ADDR%/${FORWARD_ADDR}/" \
     -e "s/%FORWARD_PORT%/${FORWARD_PORT}/" \
     > /etc/unbound/unbound.conf < /etc/unbound/unbound.conf.example
