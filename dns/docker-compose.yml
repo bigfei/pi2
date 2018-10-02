@@ -14,14 +14,14 @@ services:
   #     - PROVIDER_KEY=B735:1140:206F:225D:3E2B:D822:D7FD:691E:A1C3:3CC8:D666:8D0C:BE04:BFAB:CA43:FB79
   #   restart: always
 
-proxy:
-  build: dnscrypt-v2/
-  image: bigfei/rpi-dnscrypt-proxy-v2
-  container_name: dns_proxy_telecom
-  dns:
-    - 208.67.222.222
-    - 119.29.29.29
-  restart: always
+  proxy:
+    build: dnscrypt-v2/
+    image: bigfei/rpi-dnscrypt-proxy-v2
+    container_name: dns_proxy_telecom
+    dns:
+      - 208.67.222.222
+      - 119.29.29.29
+    restart: always
 
   unbound:
     build: unbound/
