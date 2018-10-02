@@ -19,8 +19,8 @@ services:
     image: bigfei/rpi-dnscrypt-proxy-v2
     container_name: dns_proxy_telecom
     dns:
-      - 208.67.222.222
-      - 119.29.29.29
+      - 40.73.101.101
+      - 101.132.183.99
     restart: always
 
   unbound:
@@ -34,6 +34,7 @@ services:
       #- 208.67.222.222
       #- 208.67.220.220
       - 192.168.88.254
+      - 101.132.183.99
     ports:
       - "53:53/udp"
       - "53:53/tcp"
@@ -47,7 +48,7 @@ services:
       - FORWARD_ADDR=proxy
       - FORWARD_PORT=5353
       - DNS1=192.168.88.254
-      - DNS2=119.29.29.29
+      - DNS2=101.132.183.99
     restart: always
 
   #isc-dhcp:

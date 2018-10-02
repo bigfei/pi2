@@ -659,15 +659,15 @@ remote-control:
 
 stub-zone:
     name: "88.168.192.in-addr.arpa."
-    stub-addr: %BIND% 
+    stub-addr: %BIND%
 
 stub-zone:
     name: "bigfei.lan."
-    stub-addr: %BIND% 
+    stub-addr: %BIND%
 
 stub-zone:
     name: "example.local."
-    stub-addr: %BIND% 
+    stub-addr: %BIND%
 
 # Forward zones
 # Create entries like below, to make all queries for 'example.com' and
@@ -688,5 +688,6 @@ stub-zone:
 forward-zone:
     name: "."
     forward-addr: %FORWARD_ADDR%@%FORWARD_PORT%
-    forward-addr: 208.67.220.220@5353
+    forward-addr: 101.132.183.99@2323
+    forward-addr: 40.73.101.101@2323
     forward-first: no
