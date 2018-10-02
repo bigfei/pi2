@@ -689,5 +689,5 @@ forward-zone:
     name: "."
     forward-addr: %FORWARD_ADDR%@%FORWARD_PORT%
     forward-addr: 101.132.183.99@2323
-    forward-addr: 40.73.101.101@2323
+    forward-addr: 40.73.101.101
     forward-first: no
