@@ -1,18 +1,27 @@
 version: '2'
 services:
-  proxy:
-    build: dnscrypt/
-    image: bigfei/rpi-dnscrypt-proxy
-    container_name: dns_proxy_telecom
-    dns:
-      - 208.67.222.222
-      - 208.67.220.220
-    environment:
-      - LISTEN_ADDR=0.0.0.0:5353
-      - RESOLVER_ADDR=208.67.220.220:443
-      - PROVIDER_NAME=2.dnscrypt-cert.opendns.com
-      - PROVIDER_KEY=B735:1140:206F:225D:3E2B:D822:D7FD:691E:A1C3:3CC8:D666:8D0C:BE04:BFAB:CA43:FB79
-    restart: always
+  # proxy:
+  #   build: dnscrypt/
+  #   image: bigfei/rpi-dnscrypt-proxy
+  #   container_name: dns_proxy_telecom
+  #   dns:
+  #     - 208.67.222.222
+  #     - 208.67.220.220
+  #   environment:
+  #     - LISTEN_ADDR=0.0.0.0:5353
+  #     - RESOLVER_ADDR=208.67.220.220:443
+  #     - PROVIDER_NAME=2.dnscrypt-cert.opendns.com
+  #     - PROVIDER_KEY=B735:1140:206F:225D:3E2B:D822:D7FD:691E:A1C3:3CC8:D666:8D0C:BE04:BFAB:CA43:FB79
+  #   restart: always
+
+proxy:
+  build: dnscrypt-v2/
+  image: bigfei/rpi-dnscrypt-proxy-v2
+  container_name: dns_proxy_telecom
+  dns:
+    - 208.67.222.222
+    - 119.29.29.29
+  restart: always
 
   unbound:
     build: unbound/
@@ -40,7 +49,7 @@ services:
       - DNS1=192.168.88.254
       - DNS2=119.29.29.29
     restart: always
- 
+
   #isc-dhcp:
   #  build: isc-dhcp/
   #  image: bigfei/rpi-isc-dhcp
@@ -67,4 +76,3 @@ services:
     cap_add:
       - NET_ADMIN
     restart: always
-
