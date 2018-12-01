@@ -1,6 +1,6 @@
 #!/bin/sh
 
-unboundpid="/var/run/unbound/unbound.pid"
+unboundpid="/var/run/unbound.pid"
 adfile="/var/cache/unbound/adfile.list"
 malwarefile="/var/cache/unbound/malwarefile.list"
 chinalist="/var/cache/unbound/forward-zone.China.conf"

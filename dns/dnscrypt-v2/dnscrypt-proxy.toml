@@ -204,7 +204,7 @@ cache_neg_ttl = 60
 
   ## Query log format (currently supported: tsv and ltsv)
 
-  format = 'ltsv'
+  format = 'tsv'
 
 
   ## Do not log these query types, to reduce verbosity. Keep empty to log everything.

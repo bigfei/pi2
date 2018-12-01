@@ -237,7 +237,7 @@ server:
     log-queries: yes
 
     # the pid file. Can be an absolute path outside of chroot/work dir.
-    # pidfile: "/usr/local/etc/unbound/unbound.pid"
+    pidfile: "/run/unbound.pid"
 
     # file to read root hints from.
     # get one from https://www.internic.net/domain/named.cache
@@ -688,7 +688,7 @@ stub-zone:
 forward-zone:
     name: "."
     forward-addr: %FORWARD_ADDR%@%FORWARD_PORT%
-    forward-addr: 40.73.101.101
-    forward-addr: 101.6.6.6
+    forward-addr: 192.168.88.254   
     forward-addr: 202.38.93.153
+    forward-addr: 223.113.97.99 
     forward-first: no
