@@ -1,18 +1,21 @@
-FROM resin/rpi-raspbian:latest
+FROM balenalib/raspberry-pi2-debian:latest
 MAINTAINER Felix Xu <xuchenfei@gmail.com>
-RUN echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
+RUN apt-get update && apt-get install -y apt-transport-https && \
+    rm -rf /var/lib/apt/lists/* && \
+    echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
     > /etc/apt/sources.list.d/20ubiquiti.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
+    apt-key adv --no-tty --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
     echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
     > /etc/apt/sources.list.d/webupd8team-java.list && \
     echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
     >> /etc/apt/sources.list.d/webupd8team-java.list && \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
+    apt-key adv --no-tty --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+
 
 # Install java before unifi so a controller update doesn't force
 # a rebuild/redownload of java
-ENV JAVA_INSTALLER_VERSION 8u181-1~webupd8~1 
+ENV JAVA_INSTALLER_VERSION 8u201-1~webupd8~1
 RUN apt-get update && apt-get install -y --no-install-recommends \
     oracle-java8-installer=${JAVA_INSTALLER_VERSION} \
     oracle-java8-set-default \
@@ -28,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 5.9.29
+ENV UNIFI_VERSION 5.10.12
 RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
