@@ -45,6 +45,7 @@ RUN ln -s /var/lib/unifi /usr/lib/unifi/data
 EXPOSE 8080/tcp 8081/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp 10001/udp
 VOLUME ["/usr/lib/unifi/data", "/usr/lib/unifi/logs", "/etc/ssl/certs"]
 
+COPY unifi_ssl_import.sh /
 WORKDIR /var/lib/unifi
 
 ENTRYPOINT ["/usr/bin/java", "-Xmx1024M", "-jar", "/usr/lib/unifi/lib/ace.jar"]
