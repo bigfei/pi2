@@ -662,7 +662,7 @@ stub-zone:
     stub-addr: %BIND%
 
 stub-zone:
-    name: "bigfei.lan."
+    name: "lan.bigfei.me."
     stub-addr: %BIND%
 
 stub-zone:

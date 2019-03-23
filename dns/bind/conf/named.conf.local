@@ -6,7 +6,7 @@
 // organization
 //include "/etc/bind/zones.rfc1918";
 
-zone "bigfei.lan" {
+zone "lan.bigfei.me" {
     type master;
     file "/etc/bind/zones/bigfei.lan.db"; # Zone file path
     allow-update { key rndc-key; };               # allow for dynamic updates

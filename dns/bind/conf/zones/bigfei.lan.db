@@ -1,16 +1,16 @@
 ; DO NOT EDIT MANUALLY - use the "nsupdate" utility to prevent data loss
 ;
-$ORIGIN bigfei.lan.
+$ORIGIN lan.bigfei.me.
 $TTL 86400 ; 1 day
-@  IN SOA ns1.bigfei.lan. admin.bigfei.lan. (
+@  IN SOA ns1.lan.bigfei.me. admin.lan.bigfei.me. (
     2009074711 ; serial
     7200       ; refresh (2 hours)
     300        ; retry (5 minutes)
     604800     ; expire (1 week)
     60         ; minimum (1 minute)
     )
-  IN NS ns1.bigfei.lan.
-  IN NS ns2.bigfei.lan.
+  IN NS ns1.lan.bigfei.me.
+  IN NS ns2.lan.bigfei.me.
 ns1  IN A 192.168.88.168
 ns2  IN A 192.168.88.54
 pd-gw              A 192.168.88.254
@@ -19,4 +19,5 @@ ubnt               A 192.168.88.253
 esxi               A 192.168.88.166
 sip                A 192.168.88.165
 pi2                A 192.168.88.168
+unifi              A 192.168.88.168
 
