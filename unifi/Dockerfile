@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 5.10.12
+ENV UNIFI_VERSION 5.10.20
 RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
@@ -43,7 +43,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends wget && \
 
 RUN ln -s /var/lib/unifi /usr/lib/unifi/data
 EXPOSE 8080/tcp 8081/tcp 8443/tcp 8843/tcp 8880/tcp 3478/udp 10001/udp
-VOLUME ["/usr/lib/unifi/data", "/usr/lib/unifi/logs"]
+VOLUME ["/usr/lib/unifi/data", "/usr/lib/unifi/logs", "/etc/ssl/certs"]
 
 WORKDIR /var/lib/unifi
 

@@ -68,7 +68,7 @@ services:
 
   bind:
     build: bind/
-    image: bigfei/rip-bind
+    image: bigfei/rpi-bind
     container_name: dns_bind
     depends_on:
       - proxy
