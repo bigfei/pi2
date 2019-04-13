@@ -9,8 +9,8 @@ $TTL 907200 ; 1 week 3 days 12 hours
                        )
                        NS ns1.lan.bigfei.me.
 $ORIGIN 88.168.192.in-addr.arpa.
-254                PTR pd-gw.lan.bigfei.me.
-1                  PTR px-gw.lan.bigfei.me.
+254                PTR gw.lan.bigfei.me.
+1                  PTR sw.lan.bigfei.me.
 253                PTR ubnt.lan.bigfei.me. 
 166                PTR esxi.lan.bigfei.me.
 168                PTR pi2.lan.bigfei.me.
