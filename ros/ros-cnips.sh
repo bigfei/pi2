@@ -6,4 +6,4 @@ cat > cnips.rsc << EOF
 $CNIPS
 EOF
 scp cnips.rsc bigfei@ros:/
-ssh  ros "/import cnips.rsc"
+ssh bigfei@ros "/import cnips.rsc"
