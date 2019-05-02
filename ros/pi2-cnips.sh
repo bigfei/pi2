@@ -1,7 +1,8 @@
 #!/bin/bash
-CNIPS=`curl -fsSL https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt`
 ipset destroy chnroute
 ipset -N chnroute hash:net maxelem 65536
+
+CNIPS=`curl -fsSL https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt`
 
 for ip in $CNIPS; do
   ipset add chnroute $ip
