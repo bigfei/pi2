@@ -33,7 +33,7 @@ services:
     dns:
       #- 208.67.222.222
       #- 208.67.220.220
-      - 192.168.88.254
+      - 192.168.99.254
       - 202.141.178.13
     ports:
       - "53:53/udp"
@@ -47,7 +47,7 @@ services:
       - BIND=bind
       - FORWARD_ADDR=proxy
       - FORWARD_PORT=5353
-      - DNS1=192.168.88.254
+      - DNS1=192.168.99.254
       - DNS2=202.141.162.123
     restart: always
 

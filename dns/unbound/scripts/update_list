@@ -6,7 +6,7 @@ malwarefile="/var/cache/unbound/malwarefile.list"
 chinalist="/var/cache/unbound/forward-zone.China.conf"
 hostsfile="/var/cache/unbound/hosts.China.list"
 
-NS1="192.168.88.254"
+NS1="192.168.99.254"
 NS2="119.29.29.29"
 
 adurl="https://pgl.yoyo.org/adservers/serverlist.php?hostformat=unbound&showintro=0&mimetype=plaintext"

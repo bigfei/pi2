@@ -12,9 +12,9 @@ zone "lan.bigfei.me" {
     allow-update { key rndc-key; };               # allow for dynamic updates
 };
 
-zone "88.168.192.in-addr.arpa" {
+zone "99.168.192.in-addr.arpa" {
     type master;
-    file "/etc/bind/zones/192.168.88.rev";       # 192.168.88.0/16 subnet
+    file "/etc/bind/zones/192.168.99.rev";       # 192.168.88.0/16 subnet
     allow-update { key rndc-key; };              # allow for dynamic updates
 };
 

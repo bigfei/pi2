@@ -1,6 +1,6 @@
 $ORIGIN .
 $TTL 907200 ; 1 week 3 days 12 hours
-88.168.192.in-addr.arpa IN SOA ns1.lan.bigfei.me. admin.lan.bigfei.me. (
+99.168.192.in-addr.arpa IN SOA ns1.lan.bigfei.me. admin.lan.bigfei.me. (
                        2012071706 ; serial
                        10800 ; refresh (3 hours)
                        3600 ; retry (1 hour)
@@ -8,7 +8,7 @@ $TTL 907200 ; 1 week 3 days 12 hours
                        38400 ; minimum (10 hours 40 minutes)
                        )
                        NS ns1.lan.bigfei.me.
-$ORIGIN 88.168.192.in-addr.arpa.
+$ORIGIN 99.168.192.in-addr.arpa.
 254                PTR gw.lan.bigfei.me.
 1                  PTR sw.lan.bigfei.me.
 253                PTR ubnt.lan.bigfei.me. 

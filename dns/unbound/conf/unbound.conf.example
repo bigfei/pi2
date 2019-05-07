@@ -658,7 +658,7 @@ remote-control:
 #   stub-host: ns.example.com.
 
 stub-zone:
-    name: "88.168.192.in-addr.arpa."
+    name: "99.168.192.in-addr.arpa."
     stub-addr: %BIND%
 
 stub-zone:
@@ -688,7 +688,7 @@ stub-zone:
 forward-zone:
     name: "."
     forward-addr: %FORWARD_ADDR%@%FORWARD_PORT%
-    forward-addr: 192.168.88.254   
+    forward-addr: 192.168.99.254   
     forward-addr: 202.38.93.153
     forward-addr: 223.113.97.99 
     forward-first: no
