@@ -1,43 +1,39 @@
-FROM balenalib/raspberry-pi2-debian:latest
-MAINTAINER Felix Xu <xuchenfei@gmail.com>
-RUN apt-get update && apt-get install -y apt-transport-https && \
-    rm -rf /var/lib/apt/lists/* && \
-    echo "deb http://www.ubnt.com/downloads/unifi/debian unifi5 ubiquiti" \
-    > /etc/apt/sources.list.d/20ubiquiti.list && \
-    apt-key adv --no-tty --keyserver keyserver.ubuntu.com --recv C0A52C50 && \
-    echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
-    > /etc/apt/sources.list.d/webupd8team-java.list && \
-    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" \
-    >> /etc/apt/sources.list.d/webupd8team-java.list && \
-    apt-key adv --no-tty --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 && \
-    echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+FROM multiarch/qemu-user-static:arm as qemu
 
+FROM debian:stretch-slim as untar
 
-# Install java before unifi so a controller update doesn't force
-# a rebuild/redownload of java
-ENV JAVA_INSTALLER_VERSION 8u201-1~webupd8~1
+# Due to a missing slash, the qemu-user-static image has
+# the binary copied to the _file_ /usr/bin
+COPY --from=qemu /usr/bin /tmp/qemu-arm-static.tar.gz
+
+FROM arm32v7/openjdk:8-slim-stretch
+LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
+
+COPY --from=untar /tmp/qemu-arm-static.tar.gz/qemu-arm-static /usr/bin/qemu-arm-static
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    oracle-java8-installer=${JAVA_INSTALLER_VERSION} \
-    oracle-java8-set-default \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /var/cache/oracle-jdk8-installer
+      wget \
+      ca-certificates \
+      gnupg \
+      dirmngr \
+    && rm -rf /var/lib/apt/lists/* && \
+    wget https://archive.raspbian.org/raspbian.public.key -O - | apt-key add - && \
+    echo 'deb http://archive.raspbian.org/raspbian stretch main contrib non-free' >> /etc/apt/sources.list
 
-# Install from official releases
-# ENV UNIFI_VERSION 5.2.9-8748
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-#     unifi=${UNIFI_VERSION} \
-#     && rm -rf /var/lib/apt/lists/*
 
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 5.10.20
+ENV UNIFI_VERSION 5.10.24
+ENV UNIFI_DOCKER_VERSION 5.10.24
 RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
+      wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg && \
       wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb && \
-      dpkg --install unifi_sysvinit_all.deb ; \
-      apt-get install -f && \
+      apt-get update && apt-get install -y --no-install-recommends \
+        ./unifi_sysvinit_all.deb \
+        procps && \
       rm -rf /var/lib/apt/lists/* && \
       rm -rf /tmp/build
 
