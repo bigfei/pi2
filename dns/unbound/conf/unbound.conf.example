@@ -689,6 +689,4 @@ forward-zone:
     name: "."
     forward-addr: %FORWARD_ADDR%@%FORWARD_PORT%
     forward-addr: 192.168.99.254   
-    forward-addr: 202.38.93.153
-    forward-addr: 223.113.97.99 
     forward-first: no

@@ -48,7 +48,7 @@ services:
       - FORWARD_ADDR=proxy
       - FORWARD_PORT=5353
       - DNS1=192.168.99.254
-      - DNS2=202.141.162.123
+      - DNS2=192.168.50.31
     restart: always
 
   #isc-dhcp:
