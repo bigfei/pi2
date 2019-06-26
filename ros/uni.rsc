@@ -52,7 +52,6 @@ add list=uni address=43.227.104.0/22
 add list=uni address=43.227.140.0/22
 add list=uni address=43.227.252.0/22
 add list=uni address=43.228.36.0/22
-add list=uni address=43.229.236.0/22
 add list=uni address=43.230.68.0/22
 add list=uni address=43.231.32.0/20
 add list=uni address=43.231.160.0/22
@@ -376,7 +375,6 @@ add list=uni address=103.192.4.0/23
 add list=uni address=103.192.212.0/22
 add list=uni address=103.193.188.0/22
 add list=uni address=103.198.64.0/22
-add list=uni address=103.198.196.0/22
 add list=uni address=103.202.92.0/22
 add list=uni address=103.202.96.0/20
 add list=uni address=103.202.112.0/22
@@ -582,7 +580,7 @@ add list=uni address=116.129.0.0/17
 add list=uni address=116.129.128.0/18
 add list=uni address=116.129.192.0/19
 add list=uni address=116.129.224.0/24
-add list=uni address=116.129.243.0/24
+add list=uni address=116.129.242.0/23
 add list=uni address=116.129.244.0/22
 add list=uni address=116.129.248.0/21
 add list=uni address=116.130.0.0/15
@@ -751,7 +749,7 @@ add list=uni address=122.114.0.0/16
 add list=uni address=122.115.32.0/19
 add list=uni address=122.136.0.0/13
 add list=uni address=122.144.128.0/21
-add list=uni address=122.144.136.0/22
+add list=uni address=122.144.136.0/23
 add list=uni address=122.144.142.0/23
 add list=uni address=122.144.152.0/23
 add list=uni address=122.144.166.0/23
@@ -1007,7 +1005,16 @@ add list=uni address=203.128.96.0/19
 add list=uni address=203.130.40.0/21
 add list=uni address=203.132.32.0/19
 add list=uni address=203.158.16.0/21
-add list=uni address=203.166.160.0/19
+add list=uni address=203.166.160.0/22
+add list=uni address=203.166.165.0/24
+add list=uni address=203.166.166.0/24
+add list=uni address=203.166.168.0/24
+add list=uni address=203.166.172.0/24
+add list=uni address=203.166.176.0/23
+add list=uni address=203.166.180.0/24
+add list=uni address=203.166.186.0/23
+add list=uni address=203.166.188.0/23
+add list=uni address=203.166.191.0/24
 add list=uni address=203.196.5.0/24
 add list=uni address=203.196.6.0/24
 add list=uni address=203.208.0.0/20
