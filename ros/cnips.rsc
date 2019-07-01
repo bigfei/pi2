@@ -355,6 +355,7 @@ add list=chnips address=44.159.64.0/24
 add list=chnips address=44.159.66.0/24
 add list=chnips address=45.9.11.0/24
 add list=chnips address=45.14.64.0/23
+add list=chnips address=45.14.66.0/24
 add list=chnips address=45.40.192.0/18
 add list=chnips address=45.64.74.0/23
 add list=chnips address=45.64.112.0/23
@@ -363,6 +364,7 @@ add list=chnips address=45.65.24.0/21
 add list=chnips address=45.67.138.0/24
 add list=chnips address=45.83.236.0/24
 add list=chnips address=45.88.4.0/23
+add list=chnips address=45.91.24.0/24
 add list=chnips address=45.112.132.0/22
 add list=chnips address=45.113.12.0/22
 add list=chnips address=45.113.24.0/21
@@ -406,15 +408,13 @@ add list=chnips address=45.192.176.0/23
 add list=chnips address=45.192.186.0/24
 add list=chnips address=45.192.189.0/24
 add list=chnips address=45.195.1.0/24
-add list=chnips address=45.195.5.0/24
-add list=chnips address=45.195.6.0/23
+add list=chnips address=45.195.4.0/22
 add list=chnips address=45.199.183.0/24
 add list=chnips address=45.204.24.0/21
 add list=chnips address=45.248.8.0/22
 add list=chnips address=45.248.132.0/22
 add list=chnips address=45.248.236.0/22
 add list=chnips address=45.249.89.0/24
-add list=chnips address=45.249.91.0/24
 add list=chnips address=45.249.212.0/22
 add list=chnips address=45.249.245.0/24
 add list=chnips address=45.250.32.0/21
@@ -444,6 +444,7 @@ add list=chnips address=45.254.20.0/22
 add list=chnips address=45.254.25.0/24
 add list=chnips address=45.254.26.0/24
 add list=chnips address=45.254.64.0/20
+add list=chnips address=46.232.16.0/20
 add list=chnips address=47.89.64.0/23
 add list=chnips address=47.89.66.0/24
 add list=chnips address=47.89.70.0/24
@@ -460,11 +461,11 @@ add list=chnips address=47.246.12.0/22
 add list=chnips address=47.246.16.0/21
 add list=chnips address=47.246.24.0/23
 add list=chnips address=47.246.26.0/24
-add list=chnips address=47.246.29.0/24
-add list=chnips address=47.246.30.0/23
+add list=chnips address=47.246.28.0/22
 add list=chnips address=47.246.36.0/23
 add list=chnips address=47.246.41.0/24
 add list=chnips address=47.246.42.0/24
+add list=chnips address=47.246.51.0/24
 add list=chnips address=47.246.52.0/23
 add list=chnips address=47.246.59.0/24
 add list=chnips address=49.4.0.0/17
@@ -524,6 +525,7 @@ add list=chnips address=54.222.45.0/24
 add list=chnips address=54.222.48.0/23
 add list=chnips address=54.222.50.0/24
 add list=chnips address=54.222.57.0/24
+add list=chnips address=54.222.59.0/24
 add list=chnips address=54.222.60.0/22
 add list=chnips address=54.222.128.0/17
 add list=chnips address=54.223.0.0/16
@@ -757,7 +759,7 @@ add list=chnips address=103.3.112.0/22
 add list=chnips address=103.3.120.0/21
 add list=chnips address=103.3.128.0/22
 add list=chnips address=103.3.136.0/21
-add list=chnips address=103.3.152.0/22
+add list=chnips address=103.3.152.0/21
 add list=chnips address=103.4.56.0/22
 add list=chnips address=103.5.52.0/24
 add list=chnips address=103.5.54.0/23
@@ -922,7 +924,8 @@ add list=chnips address=103.45.104.0/21
 add list=chnips address=103.45.112.0/24
 add list=chnips address=103.45.120.0/24
 add list=chnips address=103.45.123.0/24
-add list=chnips address=103.45.124.0/22
+add list=chnips address=103.45.124.0/23
+add list=chnips address=103.45.126.0/24
 add list=chnips address=103.45.128.0/22
 add list=chnips address=103.45.132.0/23
 add list=chnips address=103.45.144.0/20
@@ -979,7 +982,6 @@ add list=chnips address=103.61.60.0/22
 add list=chnips address=103.61.104.0/23
 add list=chnips address=103.61.140.0/22
 add list=chnips address=103.61.152.0/22
-add list=chnips address=103.61.188.0/22
 add list=chnips address=103.62.88.0/22
 add list=chnips address=103.64.24.0/21
 add list=chnips address=103.64.140.0/22
@@ -1111,6 +1113,7 @@ add list=chnips address=103.107.216.0/22
 add list=chnips address=103.108.244.0/24
 add list=chnips address=103.109.20.0/22
 add list=chnips address=103.110.92.0/22
+add list=chnips address=103.110.132.0/22
 add list=chnips address=103.110.136.0/22
 add list=chnips address=103.110.156.0/22
 add list=chnips address=103.111.38.0/23
@@ -1229,7 +1232,7 @@ add list=chnips address=103.218.216.0/22
 add list=chnips address=103.218.243.0/24
 add list=chnips address=103.219.28.0/22
 add list=chnips address=103.219.32.0/21
-add list=chnips address=103.219.64.0/24
+add list=chnips address=103.219.64.0/23
 add list=chnips address=103.219.176.0/22
 add list=chnips address=103.219.184.0/22
 add list=chnips address=103.220.48.0/21
@@ -1293,7 +1296,6 @@ add list=chnips address=103.234.128.0/22
 add list=chnips address=103.235.16.0/22
 add list=chnips address=103.235.44.0/22
 add list=chnips address=103.235.136.0/22
-add list=chnips address=103.235.148.0/22
 add list=chnips address=103.235.184.0/22
 add list=chnips address=103.235.200.0/22
 add list=chnips address=103.235.220.0/22
@@ -1483,8 +1485,7 @@ add list=chnips address=110.88.0.0/14
 add list=chnips address=110.96.0.0/11
 add list=chnips address=110.152.0.0/14
 add list=chnips address=110.156.0.0/15
-add list=chnips address=110.165.32.0/23
-add list=chnips address=110.165.35.0/24
+add list=chnips address=110.165.32.0/22
 add list=chnips address=110.165.36.0/23
 add list=chnips address=110.165.40.0/24
 add list=chnips address=110.165.42.0/23
@@ -1672,6 +1673,7 @@ add list=chnips address=114.113.196.0/22
 add list=chnips address=114.113.200.0/21
 add list=chnips address=114.113.208.0/20
 add list=chnips address=114.113.224.0/20
+add list=chnips address=114.113.247.0/24
 add list=chnips address=114.113.248.0/23
 add list=chnips address=114.113.250.0/24
 add list=chnips address=114.114.112.0/21
@@ -1679,7 +1681,6 @@ add list=chnips address=114.115.0.0/16
 add list=chnips address=114.116.0.0/16
 add list=chnips address=114.118.0.0/16
 add list=chnips address=114.119.0.0/17
-add list=chnips address=114.119.204.0/22
 add list=chnips address=114.135.0.0/16
 add list=chnips address=114.138.0.0/15
 add list=chnips address=114.141.128.0/18
@@ -1792,10 +1793,14 @@ add list=chnips address=116.196.64.0/18
 add list=chnips address=116.198.0.0/18
 add list=chnips address=116.198.192.0/18
 add list=chnips address=116.199.0.0/17
-add list=chnips address=116.204.64.0/21
-add list=chnips address=116.204.96.0/21
-add list=chnips address=116.204.104.0/22
-add list=chnips address=116.204.108.0/23
+add list=chnips address=116.204.64.0/23
+add list=chnips address=116.204.66.0/24
+add list=chnips address=116.204.69.0/24
+add list=chnips address=116.204.96.0/24
+add list=chnips address=116.204.99.0/24
+add list=chnips address=116.204.101.0/24
+add list=chnips address=116.204.102.0/24
+add list=chnips address=116.204.107.0/24
 add list=chnips address=116.207.0.0/16
 add list=chnips address=116.208.0.0/14
 add list=chnips address=116.213.64.0/18
@@ -2063,7 +2068,6 @@ add list=chnips address=120.32.0.0/12
 add list=chnips address=120.48.0.0/15
 add list=chnips address=120.52.0.0/16
 add list=chnips address=120.55.0.0/16
-add list=chnips address=120.64.224.0/21
 add list=chnips address=120.65.0.0/16
 add list=chnips address=120.68.0.0/14
 add list=chnips address=120.72.163.0/24
@@ -2485,10 +2489,7 @@ add list=chnips address=154.8.128.0/17
 add list=chnips address=154.48.244.0/24
 add list=chnips address=154.48.252.0/24
 add list=chnips address=154.57.151.0/24
-add list=chnips address=154.72.41.0/24
-add list=chnips address=154.72.42.0/24
-add list=chnips address=154.72.44.0/23
-add list=chnips address=154.72.47.0/24
+add list=chnips address=154.72.40.0/21
 add list=chnips address=154.83.5.0/24
 add list=chnips address=154.85.14.0/24
 add list=chnips address=154.91.32.0/23
@@ -2656,7 +2657,6 @@ add list=chnips address=180.202.0.0/15
 add list=chnips address=180.208.0.0/15
 add list=chnips address=180.210.236.0/22
 add list=chnips address=180.212.0.0/15
-add list=chnips address=180.223.0.0/17
 add list=chnips address=180.235.64.0/21
 add list=chnips address=180.235.72.0/23
 add list=chnips address=182.18.0.0/18
@@ -2721,6 +2721,7 @@ add list=chnips address=185.234.212.0/24
 add list=chnips address=185.239.84.0/22
 add list=chnips address=185.242.232.0/22
 add list=chnips address=185.243.40.0/24
+add list=chnips address=185.243.43.0/24
 add list=chnips address=185.243.240.0/22
 add list=chnips address=185.245.40.0/22
 add list=chnips address=185.247.180.0/22
