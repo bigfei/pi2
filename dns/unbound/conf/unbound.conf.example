@@ -688,5 +688,5 @@ stub-zone:
 forward-zone:
     name: "."
     forward-addr: %FORWARD_ADDR%@%FORWARD_PORT%
-    forward-addr: 192.168.99.254   
+    #forward-addr: 192.168.99.254   
     forward-first: no
