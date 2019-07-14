@@ -5,7 +5,7 @@ cat > cnips.rsc << EOF
 /ip firewall address-list
 $CNIPS
 EOF
-
+echo fetch china.txt ok
 scp cnips.rsc bigfei@ros:/
 ssh bigfei@ros "/import cnips.rsc"
 
