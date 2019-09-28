@@ -16,3 +16,7 @@ $ORIGIN 99.168.192.in-addr.arpa.
 168                PTR pi2.lan.bigfei.me.
 168                PTR unifi.lan.bigfei.me.
 165                PTR sip.lan.bigfei.me.
+49                 PTR printer.lan.bigfei.me.
+129                PTR pve.lan.bigfei.me.
+160                PTR ipmi.lan.bigfei.me.
+
