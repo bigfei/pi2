@@ -1,15 +1,30 @@
+FROM debian:stretch-slim as tini
+ENV TINI_VERSION v0.18.0
+ENV TINI_ARCH -armhf
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      wget \
+      ca-certificates \
+      gnupg \
+      dirmngr \
+      apt-transport-https \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /tmp/build && \
+	cd /tmp/build && \
+	wget -O tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static${TINI_ARCH} && \
+	cp tini /sbin/ && \
+	chmod +x /sbin/tini && \
+	cd /tmp && \
+	rm -rf /tmp/build
+
 FROM multiarch/qemu-user-static:arm as qemu
-
-FROM debian:stretch-slim as untar
-
-# Due to a missing slash, the qemu-user-static image has
-# the binary copied to the _file_ /usr/bin
-COPY --from=qemu /usr/bin /tmp/qemu-arm-static.tar.gz
 
 FROM arm32v7/openjdk:8-slim-stretch
 LABEL maintainer="Ryan Schlesinger <ryan@ryanschlesinger.com>"
 
-COPY --from=untar /tmp/qemu-arm-static.tar.gz/qemu-arm-static /usr/bin/qemu-arm-static
+COPY --from=qemu /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
+COPY --from=tini /sbin/tini /sbin/tini
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
       wget \
@@ -20,12 +35,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget https://archive.raspbian.org/raspbian.public.key -O - | apt-key add - && \
     echo 'deb http://archive.raspbian.org/raspbian stretch main contrib non-free' >> /etc/apt/sources.list
 
-
 # Install any version from deb download
 # Use dpkg to mark the package for install (expect it to fail to complete the installation)
 # Use apt-get install -f to complete the installation with dependencies
-ENV UNIFI_VERSION 5.10.25
-ENV UNIFI_DOCKER_VERSION 5.10.25
+ENV UNIFI_VERSION 5.11.46
+ENV UNIFI_DOCKER_VERSION 5.11.46
 RUN apt-get update && apt-get install -y --no-install-recommends wget && \
       mkdir -p /tmp/build && \
       cd /tmp/build && \
@@ -43,6 +57,8 @@ VOLUME ["/usr/lib/unifi/data", "/usr/lib/unifi/logs", "/etc/ssl/certs"]
 
 COPY unifi_ssl_import.sh /
 WORKDIR /var/lib/unifi
+ENV JAVA_OPTS -Xmx512M
 
-ENTRYPOINT ["/usr/bin/java", "-Xmx1024M", "-jar", "/usr/lib/unifi/lib/ace.jar"]
+COPY entrypoint.sh /docker-entrypoint.sh
+ENTRYPOINT ["/sbin/tini", "-g", "--", "/docker-entrypoint.sh"]
 CMD ["start"]

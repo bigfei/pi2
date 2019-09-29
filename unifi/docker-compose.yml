@@ -6,7 +6,7 @@ services:
     container_name: unifi
     network_mode: "host"
     volumes:
-      - "./certs:/etc/ssl/certs"
+      #- "./certs:/etc/ssl/certs"
       - "~/docker/unifi/data:/usr/lib/unifi/data"
     environment:
       - TZ=Asia/Shanghai
