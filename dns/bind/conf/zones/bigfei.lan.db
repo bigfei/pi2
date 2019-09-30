@@ -12,7 +12,7 @@ $TTL 86400 ; 1 day
   IN NS ns1.lan.bigfei.me.
   IN NS ns2.lan.bigfei.me.
 ns1  IN A 192.168.99.168
-ns2  IN A 192.168.99.54
+ns2  IN A 192.168.99.53
 gw                 A 192.168.99.254
 sw                 A 192.168.99.1
 ubnt               A 192.168.99.253
@@ -23,4 +23,6 @@ unifi              A 192.168.99.168
 printer            A 192.168.99.49
 pve                A 192.168.99.129
 ipmi               A 192.168.99.160
-
+gs110tp            A 192.168.99.2
+gs105pe            A 192.168.99.3
+pi4a               A 192.168.99.53
