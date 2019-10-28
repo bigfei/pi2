@@ -527,6 +527,7 @@ server:
     #include: "/var/cache/unbound/hosts.China.list"
     #include: "/var/cache/unbound/adfile.list"
     include: "/var/cache/unbound/forward-zone.China.conf"
+    include: "/var/cache/unbound/forward-zone.apple.conf"
 
     # a number of locally served zones can be configured.
     #   local-zone: <zone> <type>

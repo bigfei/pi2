@@ -4,6 +4,7 @@ unboundpid="/var/run/unbound.pid"
 adfile="/var/cache/unbound/adfile.list"
 malwarefile="/var/cache/unbound/malwarefile.list"
 chinalist="/var/cache/unbound/forward-zone.China.conf"
+applelist="/var/cache/unbound/forward-zone.apple.conf"
 hostsfile="/var/cache/unbound/hosts.China.list"
 
 NS1="192.168.99.254"
@@ -12,8 +13,10 @@ NS2="119.29.29.29"
 adurl="https://pgl.yoyo.org/adservers/serverlist.php?hostformat=unbound&showintro=0&mimetype=plaintext"
 malwareurl="https://mirror1.malwaredomains.com/files/BOOT.zip"
 chinaurl="https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf"
+appleurl="https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf"
 #chinaurl="https://raw.githubusercontent.com/bigfei/dnsmasq-china-list/master/accelerated-domains.china.conf"
-hostsurl="https://raw.githubusercontent.com/racaljk/hosts/master/hosts"
+#hostsurl="https://raw.githubusercontent.com/racaljk/hosts/master/hosts"
+hostsurl="https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts-files/hosts"
 
 #Ads
 if [ -e $adfile ]; then rm $adfile; fi
@@ -34,6 +37,11 @@ rm $malwarefile.tmp*
 echo "Updating $chinalist"
 curl --compressed -fsSL $chinaurl | grep -v '^#server' | sed 's/server=\//forward-zone:\n\tname: "/g' \
 | sed "s/\/114.114.114.114/\"\n\tforward-addr: ${NS1}\n\tforward-addr: ${NS2}\n\tforward-first: yes/g" > $chinalist
+
+#AppleUrl
+echo "Updating $applelist"
+curl --compressed -fsSL $appleurl | grep -v '^#server' | sed 's/server=\//forward-zone:\n\tname: "/g' \
+| sed "s/\/114.114.114.114/\"\n\tforward-addr: ${NS1}\n\tforward-addr: ${NS2}\n\tforward-first: yes/g" > $applelist
 
 #hosts
 echo "Updating $hostsfile"

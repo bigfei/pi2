@@ -1,2 +1,3 @@
 udp2raw.sh
 whitelist-uni.txt
+*.rsc
