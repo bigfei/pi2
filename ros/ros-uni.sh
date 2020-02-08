@@ -4,7 +4,7 @@ ssh bigfei@ros ":put [/ip address get [find where interface=pppoe-uni] value-nam
 echo "whitelist is: "
 cat whitelist-uni.txt
 
-UNI=`curl -fsSL https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/unicom.txt | ./cidrmerge whitelist-uni.txt | sed -e 's/^/add list=uni address=/'`
+UNI=`curl -fsSL https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/unicom.txt | cidrmerge whitelist-uni.txt | sed -e 's/^/add list=uni address=/'`
 cat > uni.rsc << EOF
 /ip firewall address-list remove [/ip firewall address-list find list=uni]
 /ip firewall address-list
