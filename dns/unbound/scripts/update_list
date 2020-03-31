@@ -12,11 +12,14 @@ NS2="119.29.29.29"
 
 adurl="https://pgl.yoyo.org/adservers/serverlist.php?hostformat=unbound&showintro=0&mimetype=plaintext"
 malwareurl="https://mirror1.malwaredomains.com/files/BOOT.zip"
-chinaurl="https://coding.net/u/felixonmars/p/dnsmasq-china-list/git/raw/master/accelerated-domains.china.conf"
-appleurl="https://coding.net/u/felixonmars/p/dnsmasq-china-list/git/raw/master/apple.china.conf"
-#chinaurl="https://raw.githubusercontent.com/bigfei/dnsmasq-china-list/master/accelerated-domains.china.conf"
-#hostsurl="https://raw.githubusercontent.com/racaljk/hosts/master/hosts"
-hostsurl="https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts-files/hosts"
+
+chinaurl="https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf"
+appleurl="https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf"
+hostsurl="https://raw.githubusercontent.com/racaljk/hosts/master/hosts"
+
+#chinaurl="https://coding.net/u/felixonmars/p/dnsmasq-china-list/git/raw/master/accelerated-domains.china.conf"
+#appleurl="https://coding.net/u/felixonmars/p/dnsmasq-china-list/git/raw/master/apple.china.conf"
+#hostsurl="https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts-files/hosts"
 
 #Ads
 if [ -e $adfile ]; then rm $adfile; fi
