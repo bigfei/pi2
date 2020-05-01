@@ -1,13 +1,10 @@
 #!/bin/sh
 
-#Delete old root files
-rm -f /var/cache/unbound/root*
-echo "Updating root hints..."
-curl -fsSL -o /var/cache/unbound/root.hints https://www.internic.net/domain/named.cache
-
+#Delete old root-anchors files
+rm -f /var/cache/unbound/root-anchors.txt
 echo "Updating root-anchors..."
 unbound-anchor -a /var/cache/unbound/root-anchors.txt
-chown unbound:unbound /var/cache/unbound/root-anchors.txt
+chown unbound:unbound /var/cache/unbound/root*
 
 sed -i "s/192\\.168\\.88\\.254/$DNS1/; s/119\\.29\\.29\\.29/$DNS2/" /etc/periodic/daily/update_list
 
