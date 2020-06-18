@@ -9,3 +9,6 @@ echo fetch china.txt ok
 scp cnips.rsc bigfei@ros:/
 ssh bigfei@ros "/import cnips.rsc"
 
+scp cnips.rsc bigfei@hap:/
+ssh bigfei@hap "/import cnips.rsc"
+
