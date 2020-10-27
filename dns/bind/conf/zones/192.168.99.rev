@@ -23,3 +23,4 @@ $ORIGIN 99.168.192.in-addr.arpa.
 3                  PTR gs105pe.lan.bigfei.me
 53                 PTR pi4a.lan.bigfei.me
 130                PTR omv.lan.bigfei.me
+111                PTR ubs.lan.bigfei.me
