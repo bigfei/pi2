@@ -12,3 +12,6 @@ ssh bigfei@ros "/import cnips.rsc"
 scp cnips.rsc bigfei@hap:/
 ssh bigfei@hap "/import cnips.rsc"
 
+scp cnips.rsc admin@test-gw:/
+ssh admin@test-gw "/import cnips.rsc"
+
