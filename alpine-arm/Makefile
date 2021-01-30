@@ -2,7 +2,7 @@
 # make alpine-arm image
 #
 
-RELEASE = edge
+RELEASE = v3.12
 IMAGE = bigfei/alpine-arm
 
 rootfs.tar.xz: mkimage-alpine.sh
