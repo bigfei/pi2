@@ -31,9 +31,9 @@ threads=1 #it seems cannot support multiple threads
 FORWARD_ADDR=${1:-$FORWARD_ADDR}
 FORWARD_PORT=${2:-$FORWARD_PORT}
 echo "Env FORWARD_ADDR as ${FORWARD_ADDR} and FORWARD_PORT as ${FORWARD_PORT}"
-FORWARD_ADDR=`nslookup $FORWARD_ADDR 2>&1 |  awk  'NR==4 { print $3 } '`
+FORWARD_ADDR=`dig +short $FORWARD_ADDR 2>&1 |  tail -n1`
 echo "Setting FORWARD_ADDR as ${FORWARD_ADDR} and FORWARD_PORT as ${FORWARD_PORT}"
-BIND=`nslookup $BIND 2>&1 |  awk  'NR==4 { print $3 } '`
+BIND=`dig +short $BIND 2>&1 |  tail -n1`
 echo "Setting BIND as ${BIND}"
 
 sed \

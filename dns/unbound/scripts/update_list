@@ -1,8 +1,7 @@
 #!/bin/sh
 
 unboundpid="/var/run/unbound.pid"
-adfile="/var/cache/unbound/adfile.list"
-malwarefile="/var/cache/unbound/malwarefile.list"
+blacklistfile="/var/cache/unbound/blacklistfile.list"
 chinalist="/var/cache/unbound/forward-zone.China.conf"
 applelist="/var/cache/unbound/forward-zone.apple.conf"
 hostsfile="/var/cache/unbound/hosts.China.list"
@@ -10,8 +9,7 @@ hostsfile="/var/cache/unbound/hosts.China.list"
 NS1="192.168.99.254"
 NS2="119.29.29.29"
 
-adurl="https://pgl.yoyo.org/adservers/serverlist.php?hostformat=unbound&showintro=0&mimetype=plaintext"
-malwareurl="https://mirror1.malwaredomains.com/files/BOOT.zip"
+blurl="https://raw.githubusercontent.com/oznu/dns-zone-blacklist/master/unbound/unbound-nxdomain.blacklist"
 
 chinaurl="https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/accelerated-domains.china.conf"
 appleurl="https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf"
@@ -21,20 +19,10 @@ hostsurl="https://raw.githubusercontent.com/racaljk/hosts/master/hosts"
 #appleurl="https://coding.net/u/felixonmars/p/dnsmasq-china-list/git/raw/master/apple.china.conf"
 #hostsurl="https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts-files/hosts"
 
-#Ads
-if [ -e $adfile ]; then rm $adfile; fi
-echo "Updating $adfile"
-curl --compressed -fsSL -o $adfile $adurl
-
-#Malwares
-if [ -e $malwarefile ]; then rm $malwarefile; fi
-echo "Updating $malwarefile"
-curl -fsSL -o $malwarefile.zip $malwareurl
-unzip -p $malwarefile.zip | grep "^PRIMARY" | cut -d " " -f2 > $malwarefile.tmp2
-while read i; do
-  echo "local-data:\"$i A 127.0.0.1\"" >> $malwarefile
-done < $malwarefile.tmp2
-rm $malwarefile.tmp*
+#Blacklist
+if [ -e $blacklistfile ]; then rm $blacklistfile; fi
+echo "Updating $blacklistfile"
+curl --compressed -fsSL -o $blacklistfile $blurl
 
 #ChinaDNS
 echo "Updating $chinalist"

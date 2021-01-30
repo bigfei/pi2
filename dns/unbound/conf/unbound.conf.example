@@ -523,9 +523,8 @@ server:
 
     # forward configuration for domains in China
     # You can replace 114.114.114.114/223.5.5.5 with China Telecom/China Unicom/China Mobile DNS resolver
-    include: "/var/cache/unbound/malwarefile.list"
+    include: "/var/cache/unbound/blacklistfile.list"
     #include: "/var/cache/unbound/hosts.China.list"
-    #include: "/var/cache/unbound/adfile.list"
     include: "/var/cache/unbound/forward-zone.China.conf"
     include: "/var/cache/unbound/forward-zone.apple.conf"
 
