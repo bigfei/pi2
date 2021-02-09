@@ -2,11 +2,11 @@
 # make alpine-arm image
 #
 
-RELEASE = v3.12
+RELEASE = v3.12  
 IMAGE = bigfei/alpine-arm
 
 rootfs.tar.xz: mkimage-alpine.sh
-	ARCH=armhf ./mkimage-alpine.sh -r $(RELEASE) -s
+	ARCH=$(shell arch) ./mkimage-alpine.sh -r $(RELEASE) -s
 
 mkimage-alpine.sh:
 	curl -sSLO https://github.com/docker/docker/raw/master/contrib/mkimage-alpine.sh
