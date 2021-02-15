@@ -1,0 +1,13 @@
+[Interface]
+Address = 10.2.1.2/32
+#Address = fd86:ea04:1111::2/128
+PrivateKey = 
+PostUp = ip rule del pref 32765; ip rule add fwmark 0xffff lookup 51820 pref 32765;iptables -I FORWARD -o %i -j ACCEPT;iptables -t nat -I POSTROUTING -o %i -j MASQUERADE
+PostDown = iptables -D FORWARD -o %i -j ACCEPT;iptables -t nat -D POSTROUTING -o %i -j MASQUERADE
+#Table=wgproxy
+
+[Peer]
+PublicKey = 
+Endpoint =
+AllowedIPs = 0.0.0.0/0#, ::/0
+
