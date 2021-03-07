@@ -12,7 +12,7 @@ RUN chmod +x /etc/periodic/daily/update_list
 COPY scripts/entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
-ADD https://www.internic.net/domain/named.cache /var/cache/unbound/root.hints
+COPY named.cache /var/cache/unbound/root.hints
 
 EXPOSE 53/tcp 53/udp
 ENTRYPOINT ["/entrypoint.sh"]
